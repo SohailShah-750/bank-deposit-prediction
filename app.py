@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+
+
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="Bank AI | Deposit Prediction",
@@ -10,6 +12,17 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+
+# ---------------- GOOGLE LOGIN ----------------
+if not st.user.is_logged_in:
+    st.title("🏦 Bank Deposit Prediction")
+    st.write("Please sign in with your Google account to continue.")
+
+    if st.button("Login with Google"):
+        st.login("google")
+
+    st.stop()
 
 # ---------------- LOAD MODEL ----------------
 @st.cache_resource
